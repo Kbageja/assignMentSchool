@@ -117,12 +117,12 @@ export default function Schools() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-2 place-items-center">
             {schools.map((school) => (
               <div
                 key={school.id}
                 onClick={() => handleSchoolClick(school.id)}
-                className="bg-white rounded-2xl shadow-lg border border-amber-200 overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
+                className="bg-white rounded-2xl w-80 shadow-lg border border-amber-200 overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
               >
                 {/* School Image */}
                 <div className="relative h-48 bg-amber-100 overflow-hidden school-image">
