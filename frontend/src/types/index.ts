@@ -44,7 +44,7 @@ export interface SchoolsResponse extends APIResponse<School[]> {
   count: number;
 }
 
-export interface SchoolResponse extends APIResponse<School> {}
+export type SchoolResponse = APIResponse<School>;
 
 export interface CreateSchoolResponse extends APIResponse<School> {
   message: string;
