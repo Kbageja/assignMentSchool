@@ -25,10 +25,17 @@ export default function Schools() {
       } else {
         setError('Failed to fetch schools');
       }
-    } catch (err: any) {
-      console.error('Error fetching schools:', err);
-      setError(err.response?.data?.error || 'Failed to fetch schools');
-    } finally {
+    } catch (err: unknown) {
+  console.error('Error fetching schools:', err);
+  if (err instanceof Error) {
+    console.error(err.message);
+  } else if (typeof err === 'object' && err && 'response' in err) {
+    const apiError = err as { response?: { data?: { error?: string } } };
+    console.error(apiError.response?.data?.error || 'Failed to fetch schools');
+  } else {
+    console.error('Failed to fetch schools');
+  }
+} finally {
       setLoading(false);
     }
   };

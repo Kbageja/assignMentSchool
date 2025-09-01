@@ -92,11 +92,18 @@ export default function AddSchool() {
           router.push('/');
         }, 2000);
       }
-    } catch (error: any) {
-      console.error('Error submitting form:', error);
-      const errorMessage = error.response?.data?.error || 'Failed to add school. Please try again.';
-      setSubmitMessage({ type: 'error', message: errorMessage });
-    } finally {
+    } catch (err: unknown) {
+  console.error('Error fetching schools:', err);
+  if (err instanceof Error) {
+    console.error(err.message);
+  } else if (typeof err === 'object' && err && 'response' in err) {
+    const apiError = err as { response?: { data?: { error?: string } } };
+    console.error(apiError.response?.data?.error || 'Failed to fetch schools');
+  } else {
+    console.error('Failed to fetch schools');
+  }
+}
+ finally {
       setIsSubmitting(false);
     }
   };
